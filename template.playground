@@ -1,0 +1,85 @@
+protocol WashingSequenceProtocol {
+    func executeBaseAlgorithm()
+    
+    func soakOperation()
+    func washOperation()
+    func rinseOperation()
+    func dryOperation()
+    
+    func optionalFabricSoftenerOperation()
+    func optionalFragranceOperation()
+}
+
+extension WashingSequenceProtocol {
+    
+    func executeBaseAlgorithm() {
+        soakOperation()
+        washOperation()
+        rinseOperation()
+        dryOperation()
+        
+        optionalFabricSoftenerOperation()
+        rinseOperation()
+        
+        optionalFragranceOperation()
+    }
+    
+    func soakOperation() {
+        print("Soaking...")
+    }
+    
+    func washOperation() {
+        print("Washing...")
+    }
+    
+    func rinseOperation() {
+        print("Rinsing...")
+    }
+    
+    func dryOperation() {
+        print("Drying...")
+    }
+}
+
+class SimpleWashingMachine: WashingSequenceProtocol {
+    
+    func dryOperation() {
+        print("Simple Drying...")
+    }
+    
+    func optionalFabricSoftenerOperation() {
+        print("Upgrade to Deluxe Washing Machine for Fabric Softener")
+    }
+    
+    func optionalFragranceOperation() {
+        print("Upgrade to Deluxe Washing Machine for Added Fragrance")
+    }
+}
+
+class DeluxeWashingMachine: WashingSequenceProtocol {
+    func dryOperation() {
+        print("Deluxe Drying...")
+    }
+    
+    func optionalFabricSoftenerOperation() {
+        print("Applying Fabric Softener")
+    }
+    
+    func optionalFragranceOperation() {
+        print("Applying Fragrance")
+    }
+}
+
+class WashingMachineApp {
+    func test() {
+        let simpleMachine = SimpleWashingMachine()
+        let deluxeMachine = DeluxeWashingMachine()
+        
+        simpleMachine.executeBaseAlgorithm()
+        
+        deluxeMachine.executeBaseAlgorithm()
+    }
+}
+
+let app = WashingMachineApp()
+app.test()
